@@ -1,7 +1,7 @@
 # CSSSim-1.0
 Cooperative spectrum sensing simulator for MATLAB
 
-# Related Project
+# Related Project:
 Simulation of Energy Spectrum Sensing for Spectrum Awareness: A Novel Scheme for Minimizing the Effects of Noise Estimation Error and Malicious Attacks in Energy-Detection-based Cooperative Spectrum Sensing for Spectrum Situational Awareness
 
 # Author:
