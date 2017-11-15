@@ -1,24 +1,27 @@
 # CSSSim-1.0
 Cooperative spectrum sensing simulator for MATLAB
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# Related Project
+Simulation of Energy Spectrum Sensing for Spectrum Awareness: A Novel Scheme for Minimizing the Effects of Noise Estimation Error and Malicious Attacks in Energy-Detection-based Cooperative Spectrum Sensing for Spectrum Situational Awareness
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# Author
+Oladiran G. Olaleye
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# School
+Wireless Systems and Performance Engineering Research (WiSPER) Laboratory, The Center for Advanced Computer Studies, University of Louisiana at Lafayette
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# Email
+ogo8842@louisiana.edu
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# Website
+http://web.cacs.louisiana.edu/labs/wisper/index.html
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# Written
+February, 2015
 
-# CSSSim-1.0
-Cooperative spectrum sensing simulator for MATLAB
+# Reference
+%O.G. Olaleye, M.A. Iqbal, A. Aly, D. Perkins, M. Bayoumi, "An Energy-Detection-based Cooperative Spectrum Sensing Scheme for Minimizing the Effects of NPEE and RSPF," MSWiM ’16, November 13-17, 2016, Malta, Malta.
+
+# NOTE:
+This is the raw unformatted copy. Thank you.
 
