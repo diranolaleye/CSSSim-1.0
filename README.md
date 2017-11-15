@@ -4,24 +4,23 @@ Cooperative spectrum sensing simulator for MATLAB
 # Related Project
 Simulation of Energy Spectrum Sensing for Spectrum Awareness: A Novel Scheme for Minimizing the Effects of Noise Estimation Error and Malicious Attacks in Energy-Detection-based Cooperative Spectrum Sensing for Spectrum Situational Awareness
 
-# Author
+# Author:
 Oladiran G. Olaleye
 
-# School
+# Lab:
 Wireless Systems and Performance Engineering Research (WiSPER) Laboratory, The Center for Advanced Computer Studies, University of Louisiana at Lafayette
 
-# Email
+# Email:
 ogo8842@louisiana.edu
 
-# Website
+# Website:
 http://web.cacs.louisiana.edu/labs/wisper/index.html
 
-# Written
-February, 2015
-
-# Reference
-%O.G. Olaleye, M.A. Iqbal, A. Aly, D. Perkins, M. Bayoumi, "An Energy-Detection-based Cooperative Spectrum Sensing Scheme for Minimizing the Effects of NPEE and RSPF," MSWiM ’16, November 13-17, 2016, Malta, Malta.
+# Reference:
+O.G. Olaleye, M.A. Iqbal, A. Aly, D. Perkins, M. Bayoumi, "An Energy-Detection-based Cooperative Spectrum Sensing Scheme for Minimizing the Effects of NPEE and RSPF," MSWiM ’16, November 13-17, 2016, Malta, Malta.
 
 # NOTE:
 This is the raw unformatted copy. Thank you.
 
+# Written:
+February, 2015
