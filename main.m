@@ -5,7 +5,7 @@
 %                            Reference:                                   %
 %O.G. Olaleye, M.A. Iqbal, A. Aly, D. Perkins, M. Bayoumi, "An Energy-    %
 %Detection-based Cooperative Spectrum Sensing Scheme for Minimizing the   % 
-%Effects of NPEE and RSPF," MSWiM ’16, November 13-17, 2016, Malta, Malta  %
+%Effects of NPEE and RSPF," MSWiM â€™16, November 13-17, 2016, Malta, Malta  %
 %																		  %
 %#########################################################################%
 %#########################################################################%
@@ -45,8 +45,7 @@ set(0,'defaultAxesFontName', 'Times New Roman');
 Signal_bandwidth = 6*10^6; % Hz (unit)
 sensing_time = 0.2; % milliSeconds (unit) 
 Pf_vector = 0.01:0.01:1; % Probability of false alarm
-% Number of samples:
-numSamples = 2 * (sensing_time/10^3) * (Signal_bandwidth); 
+numSamples = 2 * (sensing_time/10^3) * (Signal_bandwidth); % Number of samples
 num_SecondaryUsers = 60; % Number of secondary users
 snr_vector = ones(num_SecondaryUsers,1); % Signal to Noise ratio, SNR
 graph_ID = ('ox+dv^psh*ox+dv^psh*ox+dv^psh*'); % Plot identifiers
@@ -57,325 +56,142 @@ graph_color3 = ('kbgcrmy');
 graphMarker_size = [5 7 6 10 5];
 
 % Initializing variables for case A
-% Initializing AND-fused false alarm probability
-Qf_AND_caseA = ones(num_SecondaryUsers,1); 
-% Initializing AND-fused detection probability
-Qd_AND_caseA = ones(num_SecondaryUsers,1); 
-% Initializing OR-fused false alarm probability
-Qf_OR_caseA = ones(num_SecondaryUsers,1); 
-% Initializing OR-fused detection probability
-Qd_OR_caseA = ones(num_SecondaryUsers,1); 
-% Initializing OR-fused false alarm probability
-Qf_Majority_caseA = zeros(num_SecondaryUsers,1); 
-% Initializing OR-fused detection probability
-Qd_Majority_caseA = zeros(num_SecondaryUsers,1); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseA = zeros(num_SecondaryUsers,1); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseA = zeros(num_SecondaryUsers,1); 
-% Initializing Enhanced-DS-rule-fused false alarm probability
-Qf_enhanced_DSrule_caseA = ones(num_SecondaryUsers,1); 
-% Initializing Enhanced-DS-rule-fused detection probability
-Qd_enhanced_DSrule_caseA = ones(num_SecondaryUsers,1); 
-% Probability of detection or false alarm
-Qfd_enhanced_DSrule_caseA = ones(num_SecondaryUsers,1); 
+Qf_AND_caseA = ones(num_SecondaryUsers,1); % Initializing AND-fused false alarm probability
+Qd_AND_caseA = ones(num_SecondaryUsers,1); % Initializing AND-fused detection probability
+Qf_OR_caseA = ones(num_SecondaryUsers,1); % Initializing OR-fused false alarm probability
+Qd_OR_caseA = ones(num_SecondaryUsers,1); % Initializing OR-fused detection probability
+Qf_Majority_caseA = zeros(num_SecondaryUsers,1); % Initializing OR-fused false alarm probability
+Qd_Majority_caseA = zeros(num_SecondaryUsers,1); % Initializing OR-fused detection probability
+Qf_Voting_caseA = zeros(num_SecondaryUsers,1); % Initializing OR-fused false alarm probability
+Qd_Voting_caseA = zeros(num_SecondaryUsers,1); % Initializing OR-fused detection probability
+Qf_enhanced_DSrule_caseA = ones(num_SecondaryUsers,1); % Initializing Enhanced-DS-rule-fused false alarm probability
+Qd_enhanced_DSrule_caseA = ones(num_SecondaryUsers,1); % Initializing Enhanced-DS-rule-fused detection probability
+Qfd_enhanced_DSrule_caseA = ones(num_SecondaryUsers,1); % Probability of detection or false alarm
 
 % Initializing variables for case B
-% Initializing AND-fused false alarm probability
-Qf_AND_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing AND-fused detection probability
-Qd_AND_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_OR_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_OR_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Majority_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Majority_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing Enhanced-DS-rule-fused false alarm probability
-Qf_enhanced_DSrule_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing Enhanced-DS-rule-fused detection probability
-Qd_enhanced_DSrule_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
-% Probability of detection or false alarm
-Qfd_enhanced_DSrule_caseB = ones(num_SecondaryUsers,length(Pf_vector)); 
+Qf_AND_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Initializing AND-fused false alarm probability
+Qd_AND_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Initializing AND-fused detection probability
+Qf_OR_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_OR_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Majority_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Majority_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseB = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_enhanced_DSrule_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Initializing Enhanced-DS-rule-fused false alarm probability
+Qd_enhanced_DSrule_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Initializing Enhanced-DS-rule-fused detection probability
+Qfd_enhanced_DSrule_caseB = ones(num_SecondaryUsers,length(Pf_vector)); % Probability of detection or false alarm
 
 % Initializing variables for case C
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseC = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseC_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseC_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseC_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseC = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseC = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseC_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseC_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseC_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseC_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseC_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseC_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseC_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseC_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseC_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseC_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case N
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseN = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseN_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseN_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseN_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseN = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseN = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseN_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseN_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseN_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseN_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseN_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseN_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseN_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseN_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseN_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseN_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case P
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseP = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseP_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseP_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseP_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseP = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseP = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseP_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseP_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseP_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseP_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseP_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseP_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseP_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseP_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseP_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseP_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case R
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseR = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseR_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseR_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseR_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseR = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseR = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseR_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseR_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseR_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseR_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseR_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseR_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseR_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseR_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseR_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseR_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case T
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseT = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseT_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseT_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseT_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseT = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseT = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseT_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseT_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseT_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseT_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseT_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseT_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseT_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseT_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseT_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseT_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case V
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseV = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_withMalicious_lowSignal = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_withMalicious_highSignal = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseV_SNRweighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseV_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseV_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseV = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseV = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseV_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseV_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseV_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseV_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseV_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseV_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseV_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseV_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseV_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseV_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case D
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseD = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseD_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseD_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseD_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseD = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseD = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseD_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseD_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseD_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseD_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseD_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseD_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseD_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseD_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseD_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseD_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 % Initializing variables for case E
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseE = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_withMalicious_lowSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_withMalicious_highSignal = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseE_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_withMalicious_lowSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_withMalicious_highSignal_SNRweighted = zeros(...
-    num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused false alarm probability
-Qf_Voting_caseE_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_radiallyWeighted = zeros(num_SecondaryUsers,...
-    length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_withMalicious_lowSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
-% Initializing OR-fused detection probability
-Qd_Voting_caseE_withMalicious_highSignal_radiallyWeighted = ...
-    zeros(num_SecondaryUsers,length(Pf_vector)); 
+Qf_Voting_caseE = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseE = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseE_withMalicious_lowSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseE_withMalicious_highSignal = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseE_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseE_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseE_withMalicious_lowSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseE_withMalicious_highSignal_SNRweighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qf_Voting_caseE_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused false alarm probability
+Qd_Voting_caseE_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseE_withMalicious_lowSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
+Qd_Voting_caseE_withMalicious_highSignal_radiallyWeighted = zeros(num_SecondaryUsers,length(Pf_vector)); % Initializing OR-fused detection probability
 
 %% Longley-Rice Pathloss
 % Frequency = 600; % MHz (unit)
@@ -392,29 +208,26 @@ Qd_Voting_caseE_withMalicious_highSignal_radiallyWeighted = ...
 % Confidence Level = 100%
 [LongleyRice_dataset]=importdata('Longley-Rice_PathLoss.txt');
 radialDistance_fromPU = ones(num_SecondaryUsers,1);
-radialDistance_fromPU_raWdata = 1000.*LongleyRice_dataset.data(:,1); % in m
+radialDistance_fromPU_raWdata = 1000.*LongleyRice_dataset.data(:,1); % m (unit)
 pathLoss = LongleyRice_dataset.data(:,3); % In dimensionless unit
 
 %% Reference Thermal Noise Density Level
-% Noise Density Level = Boltzman Constant + 10*log(Reference Noise Temp.)
-% Boltzman Constant = -138.6 dB(mW/(K × MHz))
+% Noise Density Level = Boltzman Constant + 10*log(Reference Noise Temperature)
+% Boltzman Constant = -138.6 dB(mW/(K Ã— MHz))
 % Reference Noise Temperature = 290 K (degrees Kelvin)
 noise_avgPower_actual = -65.0; % dBm (unit)
 noise_vector_actual = ones(1,num_SecondaryUsers).* noise_avgPower_actual;
 PN = repmat(10.^(noise_vector_actual'./10),1,length(Pf_vector));
 
 %% Primary User (TV) Signal
-% Minimum requirements of -10 dBk (100 watts) horizontally polarized visual
-% effective
+% Minimum requirements of -10 dBk (100 watts) horizontally polarized visual effective
 % radiated power in any horizontal direction.
 % https://transition.fcc.gov/mb/audio/bickel/amfmrule.html
 %Pt_PU = 10*log10(1000); % dBm (unit)
 Pt_PU = 50; % dBm EIRP (unit)
 primarySignal_vector = ones(1,num_SecondaryUsers).* Pt_PU;
-receivedSignalVector = primarySignal_vector' - pathLoss(...
-    1:500:num_SecondaryUsers*500);
-radialDistance_fromPU = radialDistance_fromPU_raWdata(...
-    1:500:num_SecondaryUsers*500); % Changes due to pathloss offset
+receivedSignalVector = primarySignal_vector' - pathLoss(1:500:num_SecondaryUsers*500);
+radialDistance_fromPU = radialDistance_fromPU_raWdata(1:500:num_SecondaryUsers*500); % Changes due to pathloss offset
 PS = repmat(10.^(receivedSignalVector./10),1,length(Pf_vector));
 
 %% Signal to Noise Ratio, SNR @ Secondary Users (SU)
@@ -424,15 +237,13 @@ snr_at_SU = repmat(snr_vector,1,length(Pf_vector)); % SNR matrix
 %% Probability of False Alarm, Pf
 Pf = repmat(Pf_vector,length(snr_vector),1);
 
-%% Energy Threshold 
+%% Energy Threshold [ref: Y. C. Liang, "Sensing Throughput Tradeoff in Cognitive Radio"]
 % threshold_Energy = 2.*gammaincinv(1-Pf,numSamples);
 threshold_Energy = (qfuncinv(Pf)./sqrt(numSamples)) + 1;
 
-%% Probability of Detection, Pd at SU's
-% Pd = marcumq(sqrt(2.*(10.^(snr_at_SU./10))), sqrt(threshold_Energy),...
-%     numSamples);
-Pd = qfunc(((threshold_Energy - (10.^(snr_at_SU./10) + 1)).*sqrt(...
-    numSamples)) ./ (sqrt(2).*((10.^(snr_at_SU./10)) + 1)));
+%% Probability of Detection, Pd at SU's [ref: Y. C. Liang, "Sensing Throughput Tradeoff in Cognitive Radio"]
+%Pd = marcumq(sqrt(2.*(10.^(snr_at_SU./10))), sqrt(threshold_Energy), numSamples);
+Pd = qfunc(((threshold_Energy - (10.^(snr_at_SU./10) + 1)).*sqrt(numSamples)) ./ (sqrt(2).*((10.^(snr_at_SU./10)) + 1)));
 
 %% Plotting ROC Curve (Qf versus Qd)
 figure(1)
@@ -443,8 +254,7 @@ for i=1:10:length(Pf_vector)
     title('SNR versus Probability of Detection ({\itP}_D) for an AWGN Channel with 0<={\itP}_{FA}<=1.0');
     grid on
     axis([-25,0.0,0.0,1.0]);
-    text(snr_at_SU(ceil(0.35*length(snr_at_SU(:,i))),i),Pd(ceil(...
-        0.35*length(Pd(:,i))),i),['{\itP}_{FA} = ',num2str(Pf(1,i))], ...
+    text(snr_at_SU(ceil(0.35*length(snr_at_SU(:,i))),i),Pd(ceil(0.35*length(Pd(:,i))),i),['{\itP}_{FA} = ',num2str(Pf(1,i))], ...
         'Color', 'k', ...
         'EdgeColor','k', ...
         'BackgroundColor', 'w', ...
@@ -462,8 +272,7 @@ end
 Pf_caseA = 0.1;
 threshold_Energy_caseA = (qfuncinv(Pf_caseA)./sqrt(numSamples)) + 1;
 SNR_caseA = -11.6; % dBm (unit)
-Pd_caseA = qfunc(((threshold_Energy_caseA - (10.^(SNR_caseA./10)...
-    + 1)).*sqrt(numSamples)) ./ (sqrt(2).*((10.^(SNR_caseA./10)) + 1)));
+Pd_caseA = qfunc(((threshold_Energy_caseA - (10.^(SNR_caseA./10) + 1)).*sqrt(numSamples)) ./ (sqrt(2).*((10.^(SNR_caseA./10)) + 1)));
 Pfd_caseA = 1 - Pf_caseA - Pd_caseA; 
 
 for k = 1:num_SecondaryUsers
@@ -475,19 +284,13 @@ for k = 1:num_SecondaryUsers
         Qd_OR_caseA(k) = 1 - (1-Pd_caseA) ^ k;
         % Fusion by Majority rule with k=0.5
         for mm = ceil(k/2):k
-            Qf_Majority_caseA(k) = (Pf_caseA)^mm * (1-Pf_caseA)^(k-mm) +...
-                Qf_Majority_caseA(k);
-            Qd_Majority_caseA(k) = (Pd_caseA)^mm * (1-Pd_caseA)^(k-mm) +...
-                Qd_Majority_caseA(k);                         
+            Qf_Majority_caseA(k) = (Pf_caseA)^mm * (1-Pf_caseA)^(k-mm) + Qf_Majority_caseA(k);
+            Qd_Majority_caseA(k) = (Pd_caseA)^mm * (1-Pd_caseA)^(k-mm) + Qd_Majority_caseA(k);                         
         end
         % Fusion by Voting rule with T=0.5
         for nn = ceil(k/2):k
-            Qf_Voting_caseA(k) = factorial(k)/(factorial(nn)*...
-                factorial(k-nn)) * (Pf_caseA)^nn * (1-Pf_caseA)^(k-nn) +...
-                Qf_Voting_caseA(k);
-            Qd_Voting_caseA(k) = factorial(k)/(factorial(nn)*...
-                factorial(k-nn)) * (Pd_caseA)^nn * (1-Pd_caseA)^(k-nn) +...
-                Qd_Voting_caseA(k);
+            Qf_Voting_caseA(k) = factorial(k)/(factorial(nn)*factorial(k-nn)) * (Pf_caseA)^nn * (1-Pf_caseA)^(k-nn) + Qf_Voting_caseA(k);
+            Qd_Voting_caseA(k) = factorial(k)/(factorial(nn)*factorial(k-nn)) * (Pd_caseA)^nn * (1-Pd_caseA)^(k-nn) + Qd_Voting_caseA(k);
         end         
         % Fusion by Enhanced Dempster-Shafer Theory [ref]       
         if (k < 2)
@@ -495,31 +298,20 @@ for k = 1:num_SecondaryUsers
             Qd_enhanced_DSrule_caseA(1) = Pd_caseA;
             Qfd_enhanced_DSrule_caseA(1) = Pfd_caseA; 
         else
-            k_DS = Qd_enhanced_DSrule_caseA(k-1)*Pf_caseA + ...
-                Pd_caseA*Qf_enhanced_DSrule_caseA(k-1);
-            Qf_enhanced_DSrule_caseA(k) = (Qf_enhanced_DSrule_caseA(k-1)...
-                *Pf_caseA + Qf_enhanced_DSrule_caseA(k-1)*Pfd_caseA +...
-                Pf_caseA*Qfd_enhanced_DSrule_caseA(k-1))/(1-k_DS);
-            Qd_enhanced_DSrule_caseA(k) = (Qd_enhanced_DSrule_caseA(k-1)...
-                *Pd_caseA + Qd_enhanced_DSrule_caseA(k-1)*Pfd_caseA +...
-                Pd_caseA*Qfd_enhanced_DSrule_caseA(k-1))/(1-k_DS);
-            Qfd_enhanced_DSrule_caseA(k) = 1 - ...
-                Qf_enhanced_DSrule_caseA(k) - Qd_enhanced_DSrule_caseA(k);
+            k_DS = Qd_enhanced_DSrule_caseA(k-1)*Pf_caseA + Pd_caseA*Qf_enhanced_DSrule_caseA(k-1);
+            Qf_enhanced_DSrule_caseA(k) = (Qf_enhanced_DSrule_caseA(k-1)*Pf_caseA + Qf_enhanced_DSrule_caseA(k-1)*Pfd_caseA + Pf_caseA*Qfd_enhanced_DSrule_caseA(k-1))/(1-k_DS);
+            Qd_enhanced_DSrule_caseA(k) = (Qd_enhanced_DSrule_caseA(k-1)*Pd_caseA + Qd_enhanced_DSrule_caseA(k-1)*Pfd_caseA + Pd_caseA*Qfd_enhanced_DSrule_caseA(k-1))/(1-k_DS);
+            Qfd_enhanced_DSrule_caseA(k) = 1 - Qf_enhanced_DSrule_caseA(k) - Qd_enhanced_DSrule_caseA(k);
         end
 end
 
 %% Plotting Number of SU's versus Pd for the SU's
 figure(2)
-plot(1:1:num_SecondaryUsers,Qf_AND_caseA,'k-*',1:1:num_SecondaryUsers,...
-    Qd_AND_caseA,'k-p',...
-     1:1:num_SecondaryUsers,Qf_OR_caseA,'b-^',1:1:num_SecondaryUsers,...
-     Qd_OR_caseA,'b-d',...
-     1:1:num_SecondaryUsers,Qf_Majority_caseA,'r-s',...
-     1:1:num_SecondaryUsers,Qd_Majority_caseA,'r-+',...
-     1:1:num_SecondaryUsers,Qf_Voting_caseA,'c-<',...
-     1:1:num_SecondaryUsers,Qd_Voting_caseA,'c->',...
-     1:1:num_SecondaryUsers,Qf_enhanced_DSrule_caseA,...
-     'g-o',1:1:num_SecondaryUsers,Qd_enhanced_DSrule_caseA,'g-v')
+plot(1:1:num_SecondaryUsers,Qf_AND_caseA,'k-*',1:1:num_SecondaryUsers,Qd_AND_caseA,'k-p',...
+     1:1:num_SecondaryUsers,Qf_OR_caseA,'b-^',1:1:num_SecondaryUsers,Qd_OR_caseA,'b-d',...
+     1:1:num_SecondaryUsers,Qf_Majority_caseA,'r-s',1:1:num_SecondaryUsers,Qd_Majority_caseA,'r-+',...
+     1:1:num_SecondaryUsers,Qf_Voting_caseA,'c-<',1:1:num_SecondaryUsers,Qd_Voting_caseA,'c->',...
+     1:1:num_SecondaryUsers,Qf_enhanced_DSrule_caseA,'g-o',1:1:num_SecondaryUsers,Qd_enhanced_DSrule_caseA,'g-v')
 title('Number of SUs versus Probability of Detection ({\itP}_D) for comparing Data Fusion Methods using SUs each with SNR=-11.6dB, {\itP}_{FA}=0.1 and {\itP}_D=0.9183');
 grid on
 axis([1,num_SecondaryUsers/3,0.0,1]);
